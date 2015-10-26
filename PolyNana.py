@@ -47,15 +47,13 @@ part_strings = []
 for participant in participants:
     part_strings.append(participant.name)
 
-random.shuffle(participants)
-
 while part_strings != []:
     try:
         for participant in participants:
             participant.select()
         # Optional Code to print out to Console rather than .txt
-        #for participant in participants:
-            #print(participant.name, 'gives to', participant.giving_to)
+        # for participant in participants:
+            # print(participant.name, 'gives to', participant.giving_to)
         print('Success!')    
     except IndexError:
         print('Oh no, Elves sabotaged the proceedings! Run the program again.')
