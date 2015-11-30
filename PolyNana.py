@@ -8,7 +8,9 @@ A program designed to randomize a pollyanna gift exchange where
 
 """
 
+import os
 import random
+
 
 class Person:
     
@@ -16,6 +18,7 @@ class Person:
         self.name = name
         self.restricted_list = restricted_list
         self.giving_to = giving_to
+        
         
 def select(person, hat_list):
     '''person should be a Person object. hat_list should be a list of strings of participants.'''
@@ -60,11 +63,11 @@ while not completed:
         completed = False
 
 if completed:
-    print('Success. You are awesome.')            
+    print('Success. You are awesome.')
     with open('full_results.txt', 'w') as f:
         for participant in participants:
             f.write(participant.name + ' --> ' + participant.giving_to + '\n')
-            
+    os.chdir(os.getcwd() + '\Individual_Results')
     for participant in participants:
         filename = '%s.txt' % participant.name
         with open(filename, 'w') as file:
