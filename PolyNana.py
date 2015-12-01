@@ -48,7 +48,6 @@ nanna = Person('Nanna', ['Jeff', 'Renee', 'Angela'])
 participants = [joe, dave, adam, justin, stefan, amanda, francesca, jeff,
 angela, renee, george, nanna]
 
-# This should make it run until it completes successfully. 
 completed = False
 while not completed:
     hat = []
@@ -67,6 +66,9 @@ if completed:
     with open('full_results.txt', 'w') as f:
         for participant in participants:
             f.write(participant.name + ' --> ' + participant.giving_to + '\n')
+    
+    if not os.path.exists(os.getcwd() + '\Individual_Results'):
+        os.mkdir(os.getcwd() + '\Individual_Results')
     os.chdir(os.getcwd() + '\Individual_Results')
     for participant in participants:
         filename = '%s.txt' % participant.name
