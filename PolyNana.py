@@ -32,21 +32,11 @@ def select(person, hat_list):
             pass        
     return random.choice(okay_list)
     
-joe = Person('Joe', ['Joe', 'Jeff', 'Dave', 'Adam'])
-dave = Person('Dave', ['Dave', 'Jeff', 'Adam', 'Joe'])
-adam = Person('Adam', ['Adam', 'Jeff', 'Dave', 'Joe'])
-justin = Person('Justin', ['Justin', 'Angela', 'Stefan'])
-stefan = Person('Stefan', ['Stefan', 'Angela', 'Amanda', 'Justin'])
-amanda = Person('Amanda', ['Amanda', 'Stefan'])
-francesca = Person('Francesca', ['Francesca', 'Renee', 'George'])
-jeff = Person('Jeff', ['Jeff', 'Dave', 'Joe', 'Adam', 'Renee', 'Angela'])
-angela = Person('Angela', ['Angela', 'Stefan', 'Justin', 'Renee', 'Jeff'])
-renee = Person('Renee', ['Renee', 'George', 'Francesca', 'Angela', 'Jeff'])
-george = Person('George', ['George', 'Renee', 'Francesca'])
-nanna = Person('Nanna', ['Jeff', 'Renee', 'Angela'])
-
-participants = [joe, dave, adam, justin, stefan, amanda, francesca, jeff,
-angela, renee, george, nanna]
+participants = []    
+with open('data.txt', 'r') as data:
+    for line in data:
+        restricted_list = line.rsplit()
+        participants.append(Person(restricted_list[0], restricted_list))
 
 completed = False
 while not completed:
