@@ -1,13 +1,3 @@
-"""
-
-A program designed to randomize a pollyanna gift exchange where
-- Parents cannot give to their children.
-- Children cannot give to their parents.
-- Siblings cannot give to each other.
-- Spouses/Couples cannot give to each other.
-
-"""
-
 import os
 import random
 
