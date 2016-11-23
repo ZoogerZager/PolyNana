@@ -4,16 +4,16 @@ from random import choice
 
 class Person:
 
-    def __init__(self, name, restricted_list=None, giving_to=None):
+    def __init__(self, name, restricted_set=None, giving_to=None):
         self.name = name
-        self.restricted_list = restricted_list
+        self.restricted_set = restricted_set
         self.giving_to = giving_to
 
 
 def select(person, hat):
     '''person should be a Person object. hat_list should be a list of strings of participants.'''
-    okay_list = list(set([person for person in hat]) - person.restricted_list)
-    return choice(okay_list)
+    okay_set = set([person for person in hat]) - person.restricted_set
+    return choice(list(okay_set))
 
 def run_drawing():
     completed = False
@@ -32,8 +32,8 @@ def build_participants():
     participants = []
     with open('data.txt', 'r') as data:
         for line in data:
-            restricted_list = line.rsplit()
-            participants.append(Person(restricted_list[0], set(restricted_list)))
+            restricted_set = line.rsplit()
+            participants.append(Person(restricted_set[0], set(restricted_set)))
     return participants
 
 def build_hat():
