@@ -1,5 +1,5 @@
 import os
-import random
+from random import choice
 
 
 class Person:
@@ -12,22 +12,13 @@ class Person:
 
 def select(person, hat):
     '''person should be a Person object. hat_list should be a list of strings of participants.'''
-    okay_list = []
-    for each in hat:
-        okay_list.append(each)
-    for name in person.restricted_list:
-        if name in okay_list:
-            okay_list.remove(name)
-        else:
-            pass
-    return random.choice(okay_list)
+    okay_list = list(set([person for person in hat]) - person.restricted_list)
+    return choice(okay_list)
 
 def run_drawing():
     completed = False
     while not completed:
-        hat = []
-        for participant in participants:
-            hat.append(participant.name)
+        hat = build_hat()
         try:
             for participant in participants:
                 participant.giving_to = select(participant, hat)
@@ -42,8 +33,11 @@ def build_participants():
     with open('data.txt', 'r') as data:
         for line in data:
             restricted_list = line.rsplit()
-            participants.append(Person(restricted_list[0], restricted_list))
+            participants.append(Person(restricted_list[0], set(restricted_list)))
     return participants
+
+def build_hat():
+    return set([participant.name for participant in participants])
 
 def write_full_results():
     with open('full_results.txt', 'w') as f:
@@ -58,7 +52,7 @@ def write_individual_results():
         filename = '%s.txt' % participant.name
         with open(filename, 'w') as file:
             file.write(participant.giving_to)
-            
+
 participants = build_participants()
 if run_drawing():
     print('Success. You are awesome.')
