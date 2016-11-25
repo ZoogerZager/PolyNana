@@ -13,15 +13,11 @@ class Participant:
 class Hat:
 
     def __init__(self, contents=None):
-        self.contents = contents
+        self.contents = set([participant.name for participant in participants])
 
 
-    def build_hat(self):
-        return set([participant.name for participant in participants])
-
-
-    def select(self, person, hat):
-        okay_set = set([person for person in hat]) - person.restricted_set
+    def select(self, participant, hat):
+        okay_set = self.contents - participant.restricted_set
         return choice(list(okay_set))
 
 
@@ -55,7 +51,6 @@ def run_drawing_until_completed():
     completed = False
     while not completed:
         hat = Hat()
-        hat.contents = hat.build_hat()
         try:
             for participant in participants:
                 participant.giving_to = hat.select(participant, hat.contents)
