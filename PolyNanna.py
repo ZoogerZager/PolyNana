@@ -2,7 +2,7 @@ import os
 from random import choice
 
 
-class Person:
+class Participant:
 
     def __init__(self, name, restricted_set=None, giving_to=None):
         self.name = name
@@ -10,12 +10,25 @@ class Person:
         self.giving_to = giving_to
 
 
+def build_participants():
+    participants = []
+    with open('data.txt', 'r') as data:
+        for line in data:
+            restricted_set = line.rsplit()
+            participants.append(Participant(restricted_set[0], set(restricted_set)))
+    return participants
+
+
+def build_hat():
+    return set([participant.name for participant in participants])
+
+
 def select(person, hat):
-    '''person should be a Person object. hat_list should be a list of strings of participants.'''
     okay_set = set([person for person in hat]) - person.restricted_set
     return choice(list(okay_set))
 
-def run_drawing():
+
+def run_drawing_until_completed():
     completed = False
     while not completed:
         hat = build_hat()
@@ -28,21 +41,12 @@ def run_drawing():
             completed = False
     return completed
 
-def build_participants():
-    participants = []
-    with open('data.txt', 'r') as data:
-        for line in data:
-            restricted_set = line.rsplit()
-            participants.append(Person(restricted_set[0], set(restricted_set)))
-    return participants
-
-def build_hat():
-    return set([participant.name for participant in participants])
 
 def write_full_results():
     with open('full_results.txt', 'w') as f:
         for participant in participants:
             f.write(participant.name + ' --> ' + participant.giving_to + '\n')
+
 
 def write_individual_results():
     if not os.path.exists(os.getcwd() + '\Individual_Results'):
@@ -53,8 +57,9 @@ def write_individual_results():
         with open(filename, 'w') as file:
             file.write(participant.giving_to)
 
+
 participants = build_participants()
-if run_drawing():
+if run_drawing_until_completed():
     print('Success. You are awesome.')
     write_full_results()
     write_individual_results()
