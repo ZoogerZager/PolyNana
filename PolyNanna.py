@@ -16,9 +16,8 @@ class Hat:
         self.contents = set([participant.name for participant in participants])
 
 
-    def select(self, participant, hat):
-        okay_set = self.contents - participant.restricted_set
-        return choice(list(okay_set))
+    def select(self, participant):
+        return choice(list(self.contents - participant.restricted_set))
 
 
 class Results:
@@ -29,9 +28,10 @@ class Results:
                 f.write(participant.name + ' --> ' + participant.giving_to + '\n')
 
     def write_individual_results(self):
-        if not os.path.exists(os.getcwd() + '\Individual_Results'):
-            os.mkdir(os.getcwd() + '\Individual_Results')
-        os.chdir(os.getcwd() + '\Individual_Results')
+        individual_results_directory = os.getcwd() + '\Individual_Results'
+        if not os.path.exists(individual_results_directory):
+            os.mkdir(individual_results_directory)
+        os.chdir(individual_results_directory)
         for participant in participants:
             filename = '%s.txt' % participant.name
             with open(filename, 'w') as file:
@@ -42,8 +42,7 @@ def build_participants():
     participants = []
     with open('data.txt', 'r') as data:
         for line in data:
-            restricted_set = line.rsplit()
-            participants.append(Participant(restricted_set[0], set(restricted_set)))
+            participants.append(Participant(line.rsplit()[0], set(line.rsplit())))
     return participants
 
 
@@ -54,7 +53,7 @@ def run_drawing_until_completed():
         hat = Hat()
         try:
             for participant in participants:
-                participant.giving_to = hat.select(participant, hat.contents)
+                participant.giving_to = hat.select(participant)
                 hat.contents.remove(participant.giving_to)
             completed = True
             print('Fail Count: ', count)
