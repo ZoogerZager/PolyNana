@@ -49,6 +49,7 @@ def build_participants():
 
 def run_drawing_until_completed():
     completed = False
+    count = 0
     while not completed:
         hat = Hat()
         try:
@@ -56,8 +57,10 @@ def run_drawing_until_completed():
                 participant.giving_to = hat.select(participant, hat.contents)
                 hat.contents.remove(participant.giving_to)
             completed = True
+            print('Fail Count: ', count)
         except IndexError:
             completed = False
+            count += 1
     return completed
 
 
