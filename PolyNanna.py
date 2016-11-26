@@ -42,8 +42,18 @@ def build_participants():
     participants = []
     with open('data.txt', 'r') as data:
         for line in data:
-            participants.append(Participant(line.rsplit()[0], set(line.rsplit())))
+            if not line.startswith('#'):
+                participants.append(Participant(line.rsplit()[0], set(line.rsplit())))
     return participants
+
+
+def build_history():
+    with open('history.txt', 'r') as history:
+        for line in history:
+            if not line.startswith('#'):
+                for participant in participants:  # Dumb Way To Do This
+                    if line.rsplit()[0] == participant.name:
+                        participant.restricted_set.add(line.rsplit()[1])
 
 
 def run_drawing_until_completed():
@@ -64,6 +74,7 @@ def run_drawing_until_completed():
 
 
 participants = build_participants()
+build_history()
 if run_drawing_until_completed():
     print('Success. You are awesome.')
     results = Results()

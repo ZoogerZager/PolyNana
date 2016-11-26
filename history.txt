@@ -1,0 +1,15 @@
+# This is a list of the Results by year to prevent repeats.
+# Eventually this will break and there will be no valid solutions.
+# Participant  2015       2016
+  Joe          Renee
+  Dave         Stefan
+  Adam         Justin
+  Justin       Francesca
+  Stefan       George
+  Amanda       Adam
+  Francesca    Angela
+  Jeff         Nanna
+  Angela       Joe
+  Renee        Amanda
+  George       Jeff
+  Nanna        Dave
