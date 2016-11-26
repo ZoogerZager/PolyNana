@@ -1,6 +1,6 @@
 import os
 from random import choice
-
+import time
 
 class Participant:
 
@@ -54,6 +54,7 @@ def build_history():
                 for participant in participants:  # Dumb Way To Do This
                     if line.rsplit()[0] == participant.name:
                         participant.restricted_set.add(line.rsplit()[1])
+                        break
 
 
 def run_drawing_until_completed():
@@ -72,7 +73,7 @@ def run_drawing_until_completed():
             count += 1
     return completed
 
-
+start_time = time.time()
 participants = build_participants()
 build_history()
 if run_drawing_until_completed():
@@ -80,3 +81,4 @@ if run_drawing_until_completed():
     results = Results()
     results.write_full_results()
     results.write_individual_results()
+print('Runtime: %s seconds' % (time.time() - start_time))
