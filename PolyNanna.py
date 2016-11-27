@@ -27,6 +27,7 @@ class Results:
             for participant in participants:
                 f.write(participant.name + ' --> ' + participant.giving_to + '\n')
 
+
     def write_individual_results(self):
         individual_results_directory = os.getcwd() + '\Individual_Results'
         if not os.path.exists(individual_results_directory):
@@ -82,4 +83,4 @@ if run_drawing_until_completed():
     results = Results()
     results.write_full_results()
     results.write_individual_results()
-print('Runtime: %s seconds' % (time() - start_time))
+print('Runtime: %s seconds' % round((time() - start_time), 5))
