@@ -48,14 +48,18 @@ def build_participants():
     return participants
 
 
+def append_restricted_list(history_entry):
+    for participant in participants:
+        if history_entry.rsplit()[0] == participant.name:
+            for name in history_entry.rsplit()[1:]:
+                participant.restricted_set.add(name)
+            break
+
 def build_history():
     with open('history.txt', 'r') as history:
         for line in history:
             if not line.startswith('#'):
-                for participant in participants:
-                    if line.rsplit()[0] == participant.name:
-                        participant.restricted_set.add(line.rsplit()[1])
-                        break
+                append_restricted_list(line)
 
 
 def run_drawing_until_completed():
