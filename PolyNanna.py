@@ -20,7 +20,8 @@ class Participant:
 class Hat:
 
     def __init__(self, contents=None):
-        self.contents = set([participant.name for participant in participants])
+        self.contents = contents
+        self.contents = set([participant.name for participant in self.contents])
 
 
     def select(self, participant):
@@ -29,7 +30,8 @@ class Hat:
 
 class Results:
 
-    def __init__(self, results_directory=os.getcwd() + '\Results'):
+    def __init__(self, polyanna, results_directory=os.getcwd() + '\Results'):
+        self.polyanna = polyanna
         self.results_directory = results_directory
         if not os.path.exists(results_directory):
             os.mkdir(results_directory)
@@ -39,55 +41,62 @@ class Results:
     def write_full_results(self):
         os.chdir(self.results_directory)
         with open('full_results.txt', 'w') as f:
-            for participant in participants:
+            for participant in self.polyanna.participants:
                 f.write(participant.name + ' --> ' + participant.giving_to + '\n')
 
 
     def write_individual_results(self):
         os.chdir(self.results_directory + '\Individual_Results')
-        for participant in participants:
+        for participant in self.polyanna.participants:
             filename = '%s.txt' % participant.name
             with open(filename, 'w') as file:
                 file.write(participant.giving_to)
 
 
-def build_participants():
-    participants = []
-    with open('data.txt', 'r') as data:
-        for line in data:
-            if not line.startswith('#'):
-                participants.append(Participant(line.rsplit()[0], set(line.rsplit())))
-    return participants
+class Polyanna:
+
+    def __init__(self, participants=None):
+        self.participants = participants
 
 
-def build_all_history():
-    for participant in participants:
-        participant.build_history()
+    def build_participants(self):
+        participants = []
+        with open('data.txt', 'r') as data:
+            for line in data:
+                if not line.startswith('#'):
+                    participants.append(Participant(line.rsplit()[0], set(line.rsplit())))
+        self.participants = participants
 
 
-def run_drawing_until_completed():
-    completed = False
-    count = 0
-    while not completed:
-        hat = Hat()
-        try:
-            for participant in participants:
-                participant.giving_to = hat.select(participant)
-                hat.contents.remove(participant.giving_to)
-            completed = True
-            print('Fail Count: ', count)
-        except IndexError:
-            completed = False
-            count += 1
-    return completed
+    def build_all_history(self):
+        for participant in self.participants:
+            participant.build_history()
+
+
+    def run_drawing_until_completed(self):
+        completed = False
+        count = 0
+        while not completed:
+            hat = Hat(self.participants)
+            try:
+                for participant in self.participants:
+                    participant.giving_to = hat.select(participant)
+                    hat.contents.remove(participant.giving_to)
+                completed = True
+                print('Fail Count: ', count)
+            except IndexError:
+                completed = False
+                count += 1
+        return completed
 
 
 start_time = time()
-participants = build_participants()
-build_all_history()
-if run_drawing_until_completed():
+polyanna = Polyanna()
+polyanna.build_participants()
+polyanna.build_all_history()
+if polyanna.run_drawing_until_completed():
     print('Success. You are awesome.')
-    results = Results()
+    results = Results(polyanna)
     results.write_full_results()
     results.write_individual_results()
 print('Runtime: %s seconds' % round((time() - start_time), 5))
