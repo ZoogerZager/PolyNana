@@ -29,17 +29,22 @@ class Hat:
 
 class Results:
 
+    def __init__(self, results_directory=os.getcwd() + '\Results'):
+        self.results_directory = results_directory
+        if not os.path.exists(results_directory):
+            os.mkdir(results_directory)
+        if not os.path.exists(results_directory + '\Individual_Results'):
+            os.mkdir(results_directory + '\Individual_Results')
+
     def write_full_results(self):
+        os.chdir(self.results_directory)
         with open('full_results.txt', 'w') as f:
             for participant in participants:
                 f.write(participant.name + ' --> ' + participant.giving_to + '\n')
 
 
     def write_individual_results(self):
-        individual_results_directory = os.getcwd() + '\Individual_Results'
-        if not os.path.exists(individual_results_directory):
-            os.mkdir(individual_results_directory)
-        os.chdir(individual_results_directory)
+        os.chdir(self.results_directory + '\Individual_Results')
         for participant in participants:
             filename = '%s.txt' % participant.name
             with open(filename, 'w') as file:
