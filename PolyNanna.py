@@ -9,6 +9,13 @@ class Participant:
         self.restricted_set = restricted_set
         self.giving_to = giving_to
 
+    def build_history(self):
+        with open('history.txt', 'r') as history:
+            for line in history:
+                if line.rsplit()[0] == self.name:
+                    for name in line.rsplit()[1:]:
+                        self.restricted_set.add(name)
+
 
 class Hat:
 
@@ -48,18 +55,9 @@ def build_participants():
     return participants
 
 
-def append_restricted_list(history_entry):
+def build_all_history():
     for participant in participants:
-        if history_entry.rsplit()[0] == participant.name:
-            for name in history_entry.rsplit()[1:]:
-                participant.restricted_set.add(name)
-            break
-
-def build_history():
-    with open('history.txt', 'r') as history:
-        for line in history:
-            if not line.startswith('#'):
-                append_restricted_list(line)
+        participant.build_history()
 
 
 def run_drawing_until_completed():
@@ -81,7 +79,7 @@ def run_drawing_until_completed():
 
 start_time = time()
 participants = build_participants()
-build_history()
+build_all_history()
 if run_drawing_until_completed():
     print('Success. You are awesome.')
     results = Results()
