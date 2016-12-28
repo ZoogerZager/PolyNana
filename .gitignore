@@ -1,4 +1,5 @@
 .idea/workspace.xml
 *.xml
 .idea/PolyNanna.iml
-Results/full_results.txt
+Results/*
+__pycache__/polynanna.cpython-36.pyc

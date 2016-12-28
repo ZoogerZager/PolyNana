@@ -1,5 +1,7 @@
 from tkinter import *
 from tkinter import ttk
+from tkinter import messagebox
+from time import time
 import polynanna
 
 class PolyNannaApp:
@@ -14,7 +16,6 @@ class PolyNannaApp:
         self.style.configure('TFrame', background = '#db7070')
         self.style.configure('TButton', background = '#db7070')
         self.style.configure('TLabel', background = '#db7070')
-        self.style.configure('Header.TLabel', font = ('Arial', 18, 'bold'))
 
         self.frame_header = ttk.Frame(master)
         self.frame_header.pack()
@@ -28,7 +29,7 @@ Children cannot give to their parents.
 Siblings cannot give to each other.
 Spouses/Couples cannot give to each other."""
         ttk.Label(self.frame_header, image = self.logo).grid(row = 0, column = 0)
-        ttk.Label(self.frame_header, wraplength = 300, text = self.readme_text).grid(row = 0, column = 1)
+        ttk.Label(self.frame_header, wraplength = 245, text = self.readme_text).grid(row = 0, column = 1, sticky = 'nw')
 
         self.button_header = ttk.Frame(master)
         self.button_header.pack()
@@ -36,7 +37,10 @@ Spouses/Couples cannot give to each other."""
         ttk.Button(self.button_header, text='Run Drawing', command = self.run_drawing, width = 30).grid(row=0, column=0)
 
     def run_drawing(self):
+        start_time = time()
         polynanna.main()
+        runtime = round((time() - start_time), 5)
+        messagebox.showinfo(title = 'Success', message = 'You are awesome. Drawing completed in {} seconds.'.format(runtime))
 
 def main():
 

@@ -6,6 +6,8 @@ class Polyanna:
 
     def __init__(self, participants=None):
         self.participants = participants
+        self.runtime = 0
+        self.failcount = 0
 
 
     def build_participants(self):
@@ -24,7 +26,6 @@ class Polyanna:
 
     def run_drawing_until_completed(self):
         completed = False
-        count = 0
         while not completed:
             hat = Hat(self.participants)
             try:
@@ -32,10 +33,9 @@ class Polyanna:
                     participant.giving_to = hat.select(participant)
                     hat.contents.remove(participant.giving_to)
                 completed = True
-                print('Fail Count: ', count)
             except IndexError:
                 completed = False
-                count += 1
+                self.failcount += 1
         return completed
 
 
@@ -105,6 +105,8 @@ def main():
         results.print_results()
         # results.write_full_results()
         # results.write_individual_results()
-    print('Runtime: %s seconds' % round((time() - start_time), 5))
+    polyanna.runtime = round((time() - start_time), 5)
+    print('Runtime: {} seconds'.format(polyanna.runtime))
+    print('Fail Count: ', polyanna.failcount)
 
 if __name__ == '__main__': main()
