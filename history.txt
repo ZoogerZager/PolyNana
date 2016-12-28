@@ -2,15 +2,16 @@
 # Eventually this will break and there will be no valid solutions.
 # Participant  Recipient
 #              2015       2016
-  Joe          Renee
-  Dave         Stefan
-  Adam         Justin
-  Justin       Francesca
-  Stefan       George
-  Amanda       Adam
-  Francesca    Angela
-  Jeff         Nanna
-  Angela       Joe
-  Renee        Amanda
-  George       Jeff
+  Joe          Renee      George
+  Dave         Stefan     Francesca
+  Adam         Justin     Amanda
+  Justin       Francesca  Adam
+  Stefan       George     Renee
+  Amanda       Adam       Adrienne
+  Francesca    Angela     Joe
+  Jeff         Nanna      Justin
+  Angela       Joe        Dave
+  Renee        Amanda     Stefan
+  George       Jeff       Angela
   Nanna        Dave
+  Adrienne                Jeff
