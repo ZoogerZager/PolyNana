@@ -15,7 +15,7 @@ class Polyanna:
         with open('data.txt', 'r') as data:
             for line in data:
                 if not line.startswith('#'):
-                    participants.append(Participant(line.rsplit()[0], set(line.rsplit())))
+                    participants.append(Participant(line.split()[0], set(line.split())))
         self.participants = participants
 
 
@@ -49,8 +49,8 @@ class Participant:
     def build_history(self):
         with open('history.txt', 'r') as history:
             for line in history:
-                if line.rsplit()[0] == self.name:
-                    for name in line.rsplit()[1:]:
+                if line.split()[0] == self.name:
+                    for name in line.split()[1:]:
                         self.restricted_set.add(name)
 
 
@@ -93,6 +93,7 @@ class Results:
             filename = '%s.txt' % participant.name
             with open(filename, 'w') as file:
                 file.write(participant.giving_to)
+
 
 def main():
     start_time = time()

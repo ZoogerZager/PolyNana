@@ -36,11 +36,13 @@ Spouses/Couples cannot give to each other."""
 
         ttk.Button(self.button_header, text='Run Drawing', command = self.run_drawing, width = 30).grid(row=0, column=0)
 
+
     def run_drawing(self):
         start_time = time()
         polynanna.main()
         runtime = round((time() - start_time), 5)
         messagebox.showinfo(title = 'Success', message = 'You are awesome. Drawing completed in {} seconds.'.format(runtime))
+
 
 def main():
 

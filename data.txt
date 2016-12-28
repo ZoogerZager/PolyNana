@@ -1,4 +1,5 @@
 # PolyNanna Data File
+# This contains all the restricted recipients based on the rules specifications.
 # Participant      Restricted Recipients
   Joe              Jeff Dave Adam Adrienne
   Dave             Jeff Joe Adam
