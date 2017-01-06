@@ -94,6 +94,16 @@ class Results:
             with open(filename, 'w') as file:
                 file.write(participant.giving_to)
 
+                
+def calculate_permutations():
+    polyanna = Polyanna()
+    polyanna.build_participants()
+    polyanna.build_all_history()
+    permutations = 1
+    for person in polyanna.participants:
+        print(person.name, len(polyanna.participants) - len(person.restricted_set))
+        permutations *= len(polyanna.participants) - len(person.restricted_set)
+    return permutations - 1
 
 def main():
     start_time = time()
