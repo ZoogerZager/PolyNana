@@ -1,3 +1,4 @@
+import data
 import os
 from random import choice
 from time import time
@@ -5,18 +6,14 @@ from time import time
 class Polyanna:
 
     def __init__(self, participants=None):
-        self.participants = participants
+        self.participants = []
         self.runtime = 0
         self.failcount = 0
 
 
     def build_participants(self):
-        participants = []
-        with open('data.txt', 'r') as data:
-            for line in data:
-                if not line.startswith('#'):
-                    participants.append(Participant(line.split()[0], set(line.split())))
-        self.participants = participants
+        for key, restricted in data.data.items():
+            self.participants.append(Participant(key, set(restricted)))
 
 
     def build_all_history(self):
@@ -47,11 +44,8 @@ class Participant:
         self.giving_to = giving_to
 
     def build_history(self):
-        with open('history.txt', 'r') as history:
-            for line in history:
-                if line.split()[0] == self.name:
-                    for name in line.split()[1:]:
-                        self.restricted_set.add(name)
+        for year in data.history[self.name]:
+            self.restricted_set.add(year[1])
 
 
 class Hat:
@@ -94,16 +88,6 @@ class Results:
             with open(filename, 'w') as file:
                 file.write(participant.giving_to)
 
-                
-def calculate_permutations():
-    polyanna = Polyanna()
-    polyanna.build_participants()
-    polyanna.build_all_history()
-    permutations = 1
-    for person in polyanna.participants:
-        print(person.name, len(polyanna.participants) - len(person.restricted_set))
-        permutations *= len(polyanna.participants) - len(person.restricted_set)
-    return permutations - 1
 
 def main():
     start_time = time()
