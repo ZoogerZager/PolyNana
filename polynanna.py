@@ -1,6 +1,6 @@
 import data
 import os
-from random import choice
+from random import choice, shuffle
 
 
 class Polyanna:
@@ -12,15 +12,26 @@ class Polyanna:
 
 
     def build_participants(self):
-        '''Builds a list of Participant objects from Data.py'''
+        '''Builds a list of Participant objects from Data.py. Shuffle It :D'''
         for key, restricted in data.data.items():
             self.participants.append(Participant(key, set(restricted)))
+        shuffle(self.participants) # Adds noise to selection decision tree.
 
 
     def build_all_history(self):
         '''Iterates over participants and removes prior years' selections.'''
         for participant in self.participants:
             participant.build_history()
+
+    def print_all_possible_recipients(self):
+        '''For each participant, print possibilities to console
+
+        Note:
+            This should be run after build_all_history().
+        '''
+        for participant in self.participants:
+            print(participant.name, ' --> ',
+            set([p.name for p in self.participants]) - participant.restricted_set)
 
 
     def run_drawing_until_completed(self):
@@ -116,6 +127,7 @@ def main():
     polyanna = Polyanna()
     polyanna.build_participants()
     polyanna.build_all_history()
+    polyanna.print_all_possible_recipients()
     if polyanna.run_drawing_until_completed():
         print('Success. You are awesome.')
         results = Results(polyanna)
