@@ -7,8 +7,6 @@ Rule Specifications
 - Siblings cannot give to each other.
 - Spouses/Couples cannot give to each other.
 
-data.txt contains a list of plain text names followed by names of those who are notvalid gift recipients on the same line. White space is for readability.
-
 The program outputs a group of .txt files named with the participant name and that contain the name of their gift recipient. The program will also output a file with all the results called full_results.txt for reference.
 
 to run:
