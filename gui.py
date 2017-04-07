@@ -10,31 +10,33 @@ class PolyNannaApp:
 
         master.title('PolyNanna')
         master.resizable(False, False)
-        master.configure(background = '#db7070')
+        master.configure(background='#B2EDCE')
 
         self.style = ttk.Style()
-        self.style.configure('TFrame', background = '#db7070')
-        self.style.configure('TButton', background = '#db7070')
-        self.style.configure('TLabel', background = '#db7070')
+        self.style.configure('TFrame', background='#B2EDCE')
+        self.style.configure('TButton', background='#B2EDCE', font=('Profont', 18))
+        self.style.configure('TLabel', background='#B2EDCE', font=('Profont', 12))
 
         self.frame_header = ttk.Frame(master)
         self.frame_header.pack()
 
-        self.logo = PhotoImage(file = 'fran_hat.gif')
-        self.readme_text = """PolyNanna Gift Exchange Application \n
-A program designed to randomize a pollyanna gift exchange with familial restrictions. \n
-Rule Specifications \n
-Parents cannot give to their children.
-Children cannot give to their parents.
-Siblings cannot give to each other.
-Spouses/Couples cannot give to each other."""
-        ttk.Label(self.frame_header, image = self.logo).grid(row = 0, column = 0)
-        ttk.Label(self.frame_header, wraplength = 245, text = self.readme_text).grid(row = 0, column = 1, sticky = 'nw')
+        self.tophat = PhotoImage(file='tophat.png')
+        self.pyfile = PhotoImage(file='py.png')
+        self.gift = PhotoImage(file='gift.png')
+        self.tree = PhotoImage(file='tree.png')
+        self.readme_text = 'Test Text'
+
+        ttk.Label(self.frame_header, wraplength=245, text='PolyNanna Drawing',  font=('Profont', 18)).grid(row = 0, column = 0, columnspan=4, sticky = 'n')
+        ttk.Label(self.frame_header, image=self.tophat, background='#fc9f9f').grid(row=1, column=0)
+        ttk.Label(self.frame_header, image=self.pyfile, background='#AFE0FF').grid(row=1, column=1)
+        ttk.Label(self.frame_header, image=self.tree, background='#B2EDCE').grid(row=1, column=2)
+        ttk.Label(self.frame_header, image=self.gift, background='#AFE0FF').grid(row=1, column=3)
+        ttk.Label(self.frame_header, wraplength = 245, text = self.readme_text).grid(row=2, column=0, columnspan=4, sticky='n')
 
         self.button_header = ttk.Frame(master)
         self.button_header.pack()
 
-        ttk.Button(self.button_header, text='Run Drawing', command = self.run_drawing, width = 30).grid(row=0, column=0)
+        ttk.Button(self.button_header, text='Run Drawing', command=self.run_drawing, width=20).grid(row=0, column=0)
 
 
     def run_drawing(self):
