@@ -97,7 +97,7 @@ class Results:
     def print_results(self):
         """Print results to the console."""
         for participant in self.polyanna.participants:
-            print(participant.name, ' --> ', participant.giving_to)
+            print('{:<9} -->  {}'.format(participant.name, participant.giving_to))
 
 
     def write_full_results(self):
@@ -105,7 +105,7 @@ class Results:
         os.chdir(self.results_directory)
         with open('full_results.txt', 'w') as f:
             for participant in self.polyanna.participants:
-                f.write(participant.name + ' --> ' + participant.giving_to + '\n')
+                f.write('{:<9} -->  {}'.format(participant.name, participant.giving_to))
 
 
     def write_individual_results(self):
