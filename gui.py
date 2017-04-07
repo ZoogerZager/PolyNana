@@ -1,3 +1,4 @@
+from random import choice
 from tkinter import *
 from tkinter import ttk
 from tkinter import messagebox
@@ -40,25 +41,16 @@ class PolyNannaApp:
         self.pyfile = PhotoImage(file='icons/py.png')
         self.gift = PhotoImage(file='icons/gift.png')
         self.tree = PhotoImage(file='icons/tree.png')
+        self.icons = [self.tophat, self.pyfile, self.gift, self.tree]
         self.readme_text = 'Test Text'
 
         ttk.Label(self.frame_header, wraplength=245, text='POLYNANNA',  font=('Profont', 28)).grid(row = 0, column = 0, columnspan=4, sticky = 'n')
-        ttk.Label(self.frame_header, image=self.tophat, background=self.colors.get('red')).grid(row=1, column=0)
-        ttk.Label(self.frame_header, image=self.pyfile, background=self.colors.get('blue')).grid(row=1, column=1)
-        ttk.Label(self.frame_header, image=self.tree, background=self.colors.get('green')).grid(row=1, column=2)
-        ttk.Label(self.frame_header, image=self.gift, background=self.colors.get('blue')).grid(row=1, column=3)
-        ttk.Label(self.frame_header, image=self.tophat, background=self.colors.get('red')).grid(row=2, column=1)
-        ttk.Label(self.frame_header, image=self.pyfile, background=self.colors.get('blue')).grid(row=2, column=2)
-        ttk.Label(self.frame_header, image=self.tree, background=self.colors.get('green')).grid(row=2, column=3)
-        ttk.Label(self.frame_header, image=self.gift, background=self.colors.get('blue')).grid(row=2, column=0)
-        ttk.Label(self.frame_header, image=self.tophat, background=self.colors.get('blue')).grid(row=3, column=3)
-        ttk.Label(self.frame_header, image=self.pyfile, background=self.colors.get('green')).grid(row=3, column=0)
-        ttk.Label(self.frame_header, image=self.tree, background=self.colors.get('green')).grid(row=3, column=1)
-        ttk.Label(self.frame_header, image=self.gift, background=self.colors.get('red')).grid(row=3, column=2)
-        ttk.Label(self.frame_header, image=self.tophat, background=self.colors.get('red')).grid(row=4, column=0)
-        ttk.Label(self.frame_header, image=self.pyfile, background=self.colors.get('blue')).grid(row=4, column=1)
-        ttk.Label(self.frame_header, image=self.tree, background=self.colors.get('green')).grid(row=4, column=2)
-        ttk.Label(self.frame_header, image=self.gift, background=self.colors.get('blue')).grid(row=4, column=3)
+
+        for row in range(4):
+            for column in range(4):
+                ttk.Label(self.frame_header, image=choice(self.icons),
+                background=choice(list(self.colors.values()))).grid(row=row, column=column)
+                
         ttk.Label(self.frame_header, wraplength = 245, text = self.readme_text).grid(row=5, column=0, columnspan=4, sticky='n')
 
         self.button_header = ttk.Frame(master)

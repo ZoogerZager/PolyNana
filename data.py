@@ -1,4 +1,23 @@
-# Trying Dictionaries ala Raymond Hettinger's talk on Python 3.6 Dictionaries.
+"""
+How to Use this File.
+
+data is a dictionary where a key is the name of the participant and the value is
+a list of all the invalid selections for that participant.
+
+data = {'Bob': ['Sue', 'Jim'],
+        'Jim': ['Bob', 'Betty'],
+}       # And so on.
+
+history is a dictionary where a key is the name of the participant and the value
+is  a list of tuples that contain a year and that participant's recipient
+for that year.
+
+history = {'Bob': [(2010, 'Betty'), (2011, 'Freddie')],
+           'Jim': [(2011, 'Sue']
+           # And so on.
+}
+"""
+
 data = {'Joe': ['Joe', 'Jeff', 'Dave', 'Adam', 'Adrienne'],
         'Dave': ['Dave', 'Jeff', 'Joe', 'Adam'],
         'Adam': ['Adam', 'Jeff', 'Joe', 'Dave'],
