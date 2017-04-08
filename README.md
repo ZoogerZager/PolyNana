@@ -33,7 +33,11 @@ history = {'Bob': [(2010, 'Betty'), (2011, 'Freddie')],
 ```
 
 ## How to Use
-In GUI mode simply hit the Run Drawing Button. Otherwise run:
+To use the GUI:
+```
+python gui.py
+```
+For Command Line Only:
 ```
 python polynanna.py
 ```
