@@ -2,8 +2,7 @@ from random import choice
 from tkinter import *
 from tkinter import ttk
 from tkinter import messagebox
-from time import time
-import polynanna
+from polynanna import *
 import webbrowser
 
 
@@ -26,8 +25,10 @@ class PolyNannaApp:
         self.file.add_command(label='Quit', command=self._safe_close)
         self.options = Menu(self.menubar, tearoff=0)
         self.menubar.add_cascade(menu=self.options, label='Options')
-        self.options.add_command(label='', command=lambda: None)
-
+        self.printboolean, self.writeboolean, self.printallpossible = (BooleanVar(), BooleanVar(), BooleanVar())
+        self.options.add_checkbutton(label='Print Results', variable=self.printboolean)
+        self.options.add_checkbutton(label='Write Results', variable=self.writeboolean)
+        self.options.add_checkbutton(label='Print All Possible Recipients', variable=self.printallpossible)
 
         self.style = ttk.Style()
         self.style.configure('TFrame', background=self.colors.get('green'), font=('Profont', 18))
@@ -50,19 +51,31 @@ class PolyNannaApp:
             for column in range(4):
                 ttk.Label(self.frame_header, image=choice(self.icons),
                 background=choice(list(self.colors.values()))).grid(row=row, column=column)
-                
+
         ttk.Label(self.frame_header, wraplength = 245, text = self.readme_text).grid(row=5, column=0, columnspan=4, sticky='n')
 
         self.button_header = ttk.Frame(master)
         self.button_header.pack()
         ttk.Button(self.button_header, text='Run Drawing', command=self.run_drawing, width=20).grid(row=0, column=0)
 
-
     def run_drawing(self):
-        start_time = time()
-        polynanna.main()
-        runtime = round((time() - start_time), 5)
-        messagebox.showinfo(title='Success', message='You are awesome. Drawing completed in {} seconds.'.format(runtime))
+        polyanna = Polyanna()
+        polyanna._write = self.writeboolean.get()
+        polyanna._print = self.printboolean.get()
+        polyanna._print_all_recipients = self.printallpossible.get()
+        polyanna.build_participants()
+        polyanna.build_all_history()
+        if polyanna.run_drawing_until_completed():
+            results = Results(polyanna)
+            if polyanna._print:
+                results.print_results
+            if polyanna._write:
+                results.write_full_results()
+                results.write_individual_results()
+            if polyanna._print_all_recipients:
+                polyanna.print_all_possible_recipients()
+        print('Fail Count: ', polyanna.failcount)
+        messagebox.showinfo(title='Success', message='Drawing Completed. You are awesome.')
 
     def open_readme(self):
         webbrowser.open('https://github.com/joemarchese/PolyNanna/blob/master/README.md')

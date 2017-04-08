@@ -9,6 +9,9 @@ class Polyanna:
     def __init__(self, participants=None):
         self.participants = []
         self.failcount = 0
+        self._print = True
+        self._write = False
+        self._print_all_recipients = False
 
 
     def build_participants(self):
@@ -105,7 +108,7 @@ class Results:
         os.chdir(self.results_directory)
         with open('full_results.txt', 'w') as f:
             for participant in self.polyanna.participants:
-                f.write('{:<9} -->  {}'.format(participant.name, participant.giving_to))
+                f.write('{:<9} -->  {} \n'.format(participant.name, participant.giving_to))
 
 
     def write_individual_results(self):
@@ -127,13 +130,15 @@ def main():
     polyanna = Polyanna()
     polyanna.build_participants()
     polyanna.build_all_history()
-    polyanna.print_all_possible_recipients()
     if polyanna.run_drawing_until_completed():
-        print('Success. You are awesome.')
         results = Results(polyanna)
-        results.print_results()
-        # results.write_full_results()
-        # results.write_individual_results()
+        if polyanna._print_all_recipients:
+            polyanna.print_all_possible_recipients()
+        if polyanna._print:
+            results.print_results
+        if polyanna._write:
+            results.write_full_results()
+            results.write_individual_results()
     print('Fail Count: ', polyanna.failcount)
 
 if __name__ == '__main__': main()
