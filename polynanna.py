@@ -140,5 +140,6 @@ def main():
             results.write_full_results()
             results.write_individual_results()
     print('Fail Count: ', polyanna.failcount)
+    return polyanna
 
 if __name__ == '__main__': main()
