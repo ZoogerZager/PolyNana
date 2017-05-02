@@ -14,6 +14,10 @@ class Polyanna:
         self._print_all_recipients = False
 
 
+    def get_participant_by_name(self, name):
+        return [p for p in self.participants if p.name.lower() == name.lower()]
+
+
     def build_participants(self):
         """Builds a list of Participant objects from Data.py and shuffles it."""
         for key, restricted in data.data.items():
