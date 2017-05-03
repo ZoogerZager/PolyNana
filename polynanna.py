@@ -12,7 +12,7 @@ class Polyanna:
         self._print = True
         self._write = False
         self._print_all_recipients = False
-
+        
 
     def get_participant_by_name(self, name):
         return [p for p in self.participants if p.name.lower() == name.lower()]

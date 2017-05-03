@@ -1,0 +1,6 @@
+<!doctype html>
+<title>Polynanna Results</title>
+<h1>Welcome to the Polynanna Web App.</h1>
+{% for participant in polyanna.participants %}
+  <p><a href="{{ url_for('result', name=participant.name) }}")>{{ participant.name }}</a></p>
+{% endfor %}

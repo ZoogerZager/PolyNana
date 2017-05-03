@@ -6,13 +6,20 @@ import polynanna
 app = Flask(__name__)
 
 @app.route('/')
-def polyapp():
-    return str([p.giving_to for p in polyanna.participants])
+def polyapp(participants=None):
+    return render_template('index.html', polyanna=polyanna)
 
 @app.route('/<name>')
 def result(name=None):
-    giving_to = polyanna.get_participant_by_name(name).pop().giving_to
-    return render_template('participant.html', name=name, giving_to=giving_to)
+    if name:
+        giving_to = polyanna.get_participant_by_name(name).pop().giving_to
+        return render_template('participant.html', name=name, giving_to=giving_to)
+    else:
+        return render_template('test.html')
+
+@app.route('/test/')
+def test():
+    return render_template('test.html')
 
 if __name__ == '__main__':
     polyanna = polynanna.main()
