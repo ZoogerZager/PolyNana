@@ -12,7 +12,7 @@ def polyapp(participants=None):
 @app.route('/<name>')
 def result(name=None):
     if name:
-        giving_to = polyanna.get_participant_by_name(name).pop().giving_to
+        giving_to = polyanna.get_participant_by_name(name).giving_to
         return render_template('participant.html', name=name, giving_to=giving_to)
     else:
         return render_template('test.html')
