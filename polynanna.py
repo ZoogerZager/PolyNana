@@ -145,6 +145,7 @@ def main():
             results.write_full_results()
             results.write_individual_results()
     print('Fail Count: ', polyanna.failcount)
+    polyanna.participants = sorted(polyanna.participants, key=lambda p: p.name)
     return polyanna
 
 if __name__ == '__main__': main()
