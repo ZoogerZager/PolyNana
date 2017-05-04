@@ -1,5 +1,7 @@
-body            { font-family: sans-serif; background-color: : '#fc9f9f'; }
-a, h1, h2       { color: #377ba8; background-color: '#fc9f9f'; }
-h1, h2          { font-family: 'Convergence', sans-serif; margin: 0; }
-h1              { border-bottom: 2px solid #eee; }
-h2              { font-size: 1.2em; }
+body            { font-family: sans-serif; }
+a, h1           { color: #406507; display: inline; text-align: center; }
+h1, h2          { font-family: 'Convergence', sans-serif; }
+h1              { border-bottom: 2px solid #eee; text-align: center; }
+h2              { color: #f94141; font-size: 1.2em; width: auto; }
+img             { display: inline-block; vertical-align: middle; opacity: 0.3; }
+.bottom         { width: fit-content; }

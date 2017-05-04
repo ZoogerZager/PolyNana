@@ -3,3 +3,4 @@
 .idea/PolyNanna.iml
 Results/*
 __pycache__/polynanna.cpython-36.pyc
+__pycache__/*
