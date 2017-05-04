@@ -16,7 +16,11 @@ class Polyanna:
 
     def get_participant_by_name(self, name):
         person = [p for p in self.participants if p.name.lower() == name.lower()]
-        return person[0]
+        try:
+            return person.pop()
+        except AttributeError as error:
+            print(e)
+            print('That person is not a participant.')
 
 
     def build_participants(self):
