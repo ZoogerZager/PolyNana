@@ -1,18 +1,20 @@
-from flask import Flask
-from flask import render_template
+from flask import Flask, render_template, redirect, url_for
 import polynanna
 
 
 app = Flask(__name__)
 
 @app.route('/')
-def polyapp():
+def index():
     return render_template('index.html', polyanna=polyanna)
 
 @app.route('/<name>')
 def result(name=None):
-    giving_to = polyanna.get_participant_by_name(name).giving_to
-    return render_template('participant.html', name=name.title(), giving_to=giving_to)
+    try:
+        giving_to = polyanna.get_participant_by_name(name).giving_to
+        return render_template('result.html', name=name.title(), giving_to=giving_to)
+    except:
+        return redirect(url_for('index'))
 
 @app.route('/test/')
 def test():
