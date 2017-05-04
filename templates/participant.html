@@ -1,8 +1,4 @@
 {% extends "layout.html" %}
 {% block body %}
-{% if name and giving_to %}
-  <h1>Hello {{ name }}! You are giving a gift to {{ giving_to }}.</h1>
-{% else %}
-  <h1>Hello, World!</h1>
-{% endif %}
+  <h2>Hello {{ name }}! You are giving a gift to {{ giving_to }}.</h2>
 {% endblock %}
