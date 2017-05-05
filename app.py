@@ -1,8 +1,10 @@
 from flask import Flask, render_template, redirect, url_for
+from flask_bootstrap import Bootstrap
 import polynanna
 
 
 app = Flask(__name__)
+Bootstrap(app)
 
 @app.route('/')
 def index():
@@ -22,4 +24,4 @@ def test():
 
 if __name__ == '__main__':
     polyanna = polynanna.main()
-    app.run()
+    app.run(debug=True)
