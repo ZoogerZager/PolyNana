@@ -15,12 +15,18 @@ class Polyanna:
 
 
     def get_participant_by_name(self, name):
+        """Locates a person object in self.participants by name.
+
+        This is a bit of a hackjob, to allow the webapp to find the correct
+        person using a list comprehension. There's probably a Hettinger better
+        way. It's likely that the webapp should build a database and use that
+        instead of these data structures.
+        """
         person = [p for p in self.participants if p.name.lower() == name.lower()]
         try:
             return person.pop()
         except AttributeError as error:
-            print(e)
-            print('That person is not a participant.')
+            print(error, 'That person is not a participant.')
 
 
     def build_participants(self):
@@ -149,6 +155,7 @@ def main():
             results.write_full_results()
             results.write_individual_results()
     print('Fail Count: ', polyanna.failcount)
+    # Sort the participant objects by name for the web app.
     polyanna.participants = sorted(polyanna.participants, key=lambda p: p.name)
     return polyanna
 

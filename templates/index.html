@@ -1,5 +1,6 @@
 {% extends "layout.html" %}
-{% block body %}
+{% block content %}
+{{ super() }}
 <h2>Select your name below</h2>
 {% for participant in polyanna.participants %}
   <p><a href={{ url_for('result', name=participant.name) }}>{{ participant.name }}</a></p>
