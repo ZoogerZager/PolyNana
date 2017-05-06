@@ -4,10 +4,9 @@ html {
 }
 body {
   font-family: sans-serif;
-  /* Margin bottom by footer height */
-  min-height: 2000px;
+  min-height: 200px;
   margin-bottom: 100px; }
-a, h1           { color: #406507; display: inline; text-align: center; }
+a, h1           { color: #406507; display: inline;}
 h1, h2          { font-family: 'Convergence', sans-serif; }
 h1              { border-bottom: 2px solid #eee; text-align: center; }
 h2              { color: #f94141; font-size: 1.2em; width: auto; }
@@ -29,7 +28,4 @@ img             { display: inline-block; vertical-align: middle; opacity: 0.3; }
   width: auto;
   max-width: 680px;
   padding: 0 15px;
-}
-.container .text-muted {
-  margin: 20px 0;
 }
