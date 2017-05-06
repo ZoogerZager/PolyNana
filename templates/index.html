@@ -1,8 +1,11 @@
 {% extends "layout.html" %}
-{% block content %}
-{{ super() }}
-<h2>Select your name below</h2>
+{% block mycontent %}
+<div class="alert alert-success" role="alert">Select your name</div>
+<div class="well">
+<div class="list-group">
 {% for participant in polyanna.participants %}
-  <p><a href={{ url_for('result', name=participant.name) }}>{{ participant.name }}</a></p>
+  <a href={{ url_for('result', name=participant.name) }} class="list-group-item">{{ participant.name }}</a>
 {% endfor %}
+</div>
+</div>
 {% endblock %}

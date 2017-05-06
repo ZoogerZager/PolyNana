@@ -1,5 +1,4 @@
 {% extends "layout.html" %}
-{% block content %}
-  {{ super() }}
-  <h2>Hello {{ name }}! You are giving a gift to {{ giving_to }}.</h2>
-{% endblock %}
+{% block mycontent %}
+  <div class="alert alert-danger" role="alert">Hello {{ name }}! You are giving a gift to {{ giving_to }}.</div>
+{% endblock mycontent %}
