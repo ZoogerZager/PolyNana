@@ -3,14 +3,21 @@ html {
   min-height: 100%;
 }
 body {
-  font-family: sans-serif;
   min-height: 200px;
-  margin-bottom: 100px; }
-a, h1           { color: #406507; display: inline;}
-h1, h2          { font-family: 'Convergence', sans-serif; }
-h1              { border-bottom: 2px solid #eee; text-align: center; }
-h2              { color: #f94141; font-size: 1.2em; width: auto; }
-img             { display: inline-block; vertical-align: middle; opacity: 0.3; }
+  margin-bottom: 100px;
+  font-family: 'Montserrat', sans-serif;
+}
+h1 {
+  color: #406507;
+  display: inline;
+  border-bottom: 2px solid #eee;
+  text-align: center;
+}
+img {
+  display: inline-block;
+  vertical-align: middle;
+  opacity: 0.3;
+}
 .static-top {
   margin-bottom: 100px;
 }
