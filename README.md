@@ -33,8 +33,11 @@ history = {'Bob': [(2010, 'Betty'), (2011, 'Freddie')],
 
 ## How to Use
 To use the Web App:
-```python app.py```
-navigate to http://localhost:5000/ on your favorite web browser.
+```
+python app.py
+```
+Navigate to http://localhost:5000/ on your favorite web browser.
+
 To use the GUI:
 ```
 python gui.py
