@@ -6,7 +6,6 @@ A program designed to randomize a pollyanna gift exchange with familial restrict
 ```
 git clone https://github.com/joemarchese/polynanna
 cd polynanna
-python gui.py
 ```
 
 ## Prerequisites
@@ -33,6 +32,9 @@ history = {'Bob': [(2010, 'Betty'), (2011, 'Freddie')],
 ```
 
 ## How to Use
+To use the Web App:
+```python app.py```
+navigate to http://localhost:5000/ on your favorite web browser.
 To use the GUI:
 ```
 python gui.py
