@@ -26,7 +26,7 @@ history is a dictionary where a key is the name of the participant and the value
 
 ```
 history = {'Bob': [(2010, 'Betty'), (2011, 'Freddie')],
-           'Jim': [(2011, 'Sue']
+           'Jim': [(2011, 'Sue')],
            # And so on.
 }
 ```
