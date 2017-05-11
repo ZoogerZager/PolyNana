@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, url_for, jsonify
+from flask import Flask, render_template, redirect, url_for
 from flask_bootstrap import Bootstrap
 from models import db, Person
 import polynanna
@@ -30,17 +30,18 @@ def test():
     return render_template('test.html')
 
 if __name__ == '__main__':
-    if 'createdb' in sys.argv:
+    if 'rundrawing' in sys.argv:
         with app.app_context():
+            try: # Delete the Database if it already exists.
+                db.session.query(Person).delete()
+                db.session.commit()
+            except:
+                pass
             db.create_all()
-        print('Database created!')
-    elif 'seeddb' in sys.argv:
-        with app.app_context():
             polyanna = polynanna.main()
             for p in polyanna.participants:
                 entry = Person(slug=p.name.lower(), name=p.name, giving_to=p.giving_to)
                 db.session.add(entry)
                 db.session.commit()
     else:
-        # polyanna = polynanna.main()
         app.run(debug=True)

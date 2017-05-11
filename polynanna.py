@@ -155,7 +155,6 @@ def main():
             results.write_full_results()
             results.write_individual_results()
     print('Fail Count: ', polyanna.failcount)
-    # Sort the participant objects by name for the web app.
     polyanna.participants = sorted(polyanna.participants, key=lambda p: p.name)
     return polyanna
 
