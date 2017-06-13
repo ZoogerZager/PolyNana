@@ -14,21 +14,6 @@ class Polyanna:
         self._print_all_recipients = False
 
 
-    def get_participant_by_name(self, name):
-        """Locates a person object in self.participants by name.
-
-        This is a bit of a hackjob, to allow the webapp to find the correct
-        person using a list comprehension. There's probably a Hettinger better
-        way. It's likely that the webapp should build a database and use that
-        instead of these data structures.
-        """
-        person = [p for p in self.participants if p.name.lower() == name.lower()]
-        try:
-            return person.pop()
-        except AttributeError as error:
-            print(error, 'That person is not a participant.')
-
-
     def build_participants(self):
         """Builds a list of Participant objects from Data.py and shuffles it."""
         for key, restricted in data.data.items():
@@ -154,7 +139,6 @@ def main():
         if polyanna._write:
             results.write_full_results()
             results.write_individual_results()
-    print('Fail Count: ', polyanna.failcount)
     polyanna.participants = sorted(polyanna.participants, key=lambda p: p.name)
     return polyanna
 
