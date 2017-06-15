@@ -12,15 +12,9 @@ class Polyanna:
 
     def build_participants(self):
         """Builds a list of Participant objects from Data.py and shuffles it."""
-        for key, restricted in data.data.items():
-            self.participants.append(Participant(key, set(restricted)))
+        for p, restricted in data.data.items():
+            self.participants.append(Participant(p, set(restricted)|set([e[1] for e in data.history.get(p)])))
         shuffle(self.participants) # Adds noise to selection decision tree.
-
-
-    def build_all_history(self):
-        """Iterates over participants and removes prior years' selections."""
-        for participant in self.participants:
-            participant.build_history()
 
 
     def run_drawing_until_completed(self):
@@ -53,11 +47,6 @@ class Participant:
         self.restricted_set = restricted_set
         self.giving_to = giving_to
 
-    def build_history(self):
-        """Adds previous gift recipients to a Participant's restricted_set."""
-        for year in data.history[self.name]:
-            self.restricted_set.add(year[1])
-
 
 class Hat:
     """This class represents the valid participants still in the drawing."""
@@ -75,9 +64,9 @@ class Hat:
 def main():
     polyanna = Polyanna()
     polyanna.build_participants()
-    polyanna.build_all_history()
     polyanna.run_drawing_until_completed()
     polyanna.participants = sorted(polyanna.participants, key=lambda p: p.name)
     return polyanna
+    
 
 if __name__ == '__main__': main()
