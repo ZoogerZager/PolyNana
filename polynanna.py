@@ -7,14 +7,9 @@ class Polyanna:
 
     def __init__(self, participants=None):
         self.participants = []
+        self.participants = [Participant(p) for p in data.data.keys()]
+        shuffle(self.participants)
         self.failcount = 0
-
-
-    def build_participants(self):
-        """Builds a list of Participant objects from Data.py and shuffles it."""
-        for p, restricted in data.data.items():
-            self.participants.append(Participant(p, set(restricted)|set([e[1] for e in data.history.get(p)])))
-        shuffle(self.participants) # Adds noise to selection decision tree.
 
 
     def run_drawing_until_completed(self):
@@ -45,6 +40,7 @@ class Participant:
     def __init__(self, name, restricted_set=None, giving_to=None):
         self.name = name
         self.restricted_set = restricted_set
+        self.restricted_set = set(data.data.get(self.name))|set([y[1] for y in data.history.get(self.name)])
         self.giving_to = giving_to
 
 
@@ -63,10 +59,9 @@ class Hat:
 
 def main():
     polyanna = Polyanna()
-    polyanna.build_participants()
     polyanna.run_drawing_until_completed()
     polyanna.participants = sorted(polyanna.participants, key=lambda p: p.name)
     return polyanna
-    
+
 
 if __name__ == '__main__': main()

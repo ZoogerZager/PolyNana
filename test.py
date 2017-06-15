@@ -26,7 +26,7 @@ class TestPolynanna(unittest.TestCase):
 
     def test_restricted_sets(self):
         for p in self.polyanna.participants:
-            r_set = set(data.data.get(p.name))|set([e[1] for e in data.history.get(p.name)])
+            r_set = set(data.data.get(p.name))|set([y[1] for y in data.history.get(p.name)])
             with self.subTest(p=p):
                 self.assertEqual(p.restricted_set, r_set)
 
