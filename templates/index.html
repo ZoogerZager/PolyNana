@@ -1,11 +1,12 @@
 {% extends "layout.html" %}
 {% block mycontent %}
 <div class="alert alert-success" role="alert">Select your name</div>
-<div class="well">
-<div class="list-group">
-{% for participant in participants %}
-  <a href={{ url_for('result', name=participant.name) }} class="list-group-item">{{ participant.name }}</a>
-{% endfor %}
-</div>
+	<div class="well">
+		<div class="list-group">
+			{% for participant in participants %}
+			  <a href={{ url_for('result', name=participant.name) }} class="list-group-item">{{ participant.name }}</a>
+			{% endfor %}
+		</div>
+	</div>
 </div>
 {% endblock %}

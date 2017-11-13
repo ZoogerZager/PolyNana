@@ -34,7 +34,7 @@ history = {'Bob': [(2010, 'Betty'), (2011, 'Freddie')],
 ## How to Use
 To use the Web App:
 ```
-python app.py rundrawing # this will create and seed the database.
+python run_drawing.py # this will create the database.
 python app.py
 ```
 Navigate to http://localhost:5000/ on your favorite web browser.

@@ -50,4 +50,5 @@ def main():
     results.write_individual_results()
 
 
-if __name__ == '__main__': main()
+if __name__ == '__main__':
+    main()
