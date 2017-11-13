@@ -6,6 +6,7 @@ A program designed to randomize a pollyanna gift exchange with familial restrict
 ```
 git clone https://github.com/joemarchese/polynanna
 cd polynanna
+virtualenv venv
 . venv/Scripts/activate # activate virtualenv
 pip install requirements.txt
 ```
