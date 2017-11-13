@@ -8,11 +8,12 @@ git clone https://github.com/joemarchese/polynanna
 cd polynanna
 virtualenv venv
 . venv/Scripts/activate # activate virtualenv
-pip install requirements.txt
+pip install -r requirements.txt
 ```
 
 ## Prerequisites
 Python 3.x
+virtualenv (`pip install virtualenv`)
 
 ## How to Set Participants
 Participants are set in the data.py file.
