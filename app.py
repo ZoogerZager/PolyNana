@@ -22,5 +22,11 @@ def result(name):
     except:
         return redirect(url_for('index'))
 
+
+@app.route('/results')
+def results():
+    participants = Person.query.all()
+    return render_template('results.html', participants=participants)
+
 if __name__ == '__main__':
     app.run(debug=True)

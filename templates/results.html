@@ -1,0 +1,12 @@
+{% extends "layout.html" %}
+{% block mycontent %}
+  <div class="alert alert-info" role="alert">Full Results</div>
+	<div class="well">
+		<ul class="list-group">
+			{% for p in participants %}
+			  <li class="list-group-item">{{ p.name }} -->  {{ p.giving_to }}</li>
+			{% endfor %}
+		</ul>
+	</div>
+</div>
+{% endblock mycontent %}
