@@ -16,7 +16,7 @@ db.generate_mapping(create_tables=True)
 def run_drawing():
 	polyanna = polynanna.main()
 	for p in polyanna.participants:
-		try: # update table if name entries already exist
+		try: # update table if name entries already exist.
 			person = Person.get(name=p.name)
 			person.giving_to = p.giving_to
 		except: # otherwise create them.

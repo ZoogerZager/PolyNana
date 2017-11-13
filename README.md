@@ -6,6 +6,8 @@ A program designed to randomize a pollyanna gift exchange with familial restrict
 ```
 git clone https://github.com/joemarchese/polynanna
 cd polynanna
+. venv/Scripts/activate # activate virtualenv
+pip install requirements.txt
 ```
 
 ## Prerequisites
@@ -46,6 +48,10 @@ python gui.py
 For Command Line Only:
 ```
 python polynanna.py
+```
+To run Unittests:
+```
+python -m unittest test
 ```
 
 ## Rule Specifications
