@@ -7,7 +7,7 @@ class Polyanna:
 
     def __init__(self, participants=None):
         self.participants = []
-        self.participants = [Participant(p) for p in data.data.keys()]
+        self.participants = [Participant(p) for p in data.participants.keys()]
         shuffle(self.participants)
         self.failcount = 0
 
@@ -40,7 +40,7 @@ class Participant:
     def __init__(self, name, restricted_set=None, giving_to=None):
         self.name = name
         self.restricted_set = restricted_set
-        self.restricted_set = set(data.data.get(self.name))|set([y[1] for y in data.history.get(self.name)])
+        self.restricted_set = set(data.participants.get(self.name))|set([y[1] for y in data.history.get(self.name)])
         self.giving_to = giving_to
 
 

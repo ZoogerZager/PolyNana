@@ -1,6 +1,6 @@
 from flask import Flask, render_template, redirect, url_for
 from flask_bootstrap import Bootstrap
-from models import db, Person
+from models import db, Participant
 
 
 app = Flask(__name__)
@@ -10,22 +10,22 @@ Bootstrap(app)
 
 @app.route('/')
 def index():
-    participants = Person.query.all()
+    participants = Participant.query.all()
     return render_template('index.html', participants=participants)
 
 
 @app.route('/<name>')
 def result(name):
     try:
-        person = Person.query.filter(Person.name==name.title()).first_or_404()
-        return render_template('result.html', name=person.name, giving_to=person.giving_to)
+        participant = Participant.query.filter(Participant.name==name.title()).first_or_404()
+        return render_template('result.html', name=participant.name, giving_to=participant.giving_to)
     except:
         return redirect(url_for('index'))
 
 
 @app.route('/results')
 def results():
-    participants = Person.query.all()
+    participants = Participant.query.all()
     return render_template('results.html', participants=participants)
 
 if __name__ == '__main__':

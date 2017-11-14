@@ -8,10 +8,8 @@ from pony.orm import *
 
 class TestPolynanna(unittest.TestCase):
 
-
     def setUp(self):
         self.polyanna = polynanna.main()
-        print('Failcount: ', self.polyanna.failcount)
 
 
     def tearDown(self):
@@ -28,23 +26,36 @@ class TestPolynanna(unittest.TestCase):
 
 
     def test_restricted_sets(self):
+        """Test that restricted sets are equal to the intersections of restricted_set and history sets."""
         for p in self.polyanna.participants:
-            r_set = set(data.data.get(p.name))|set([y[1] for y in data.history.get(p.name)])
+            r_set = set(data.participants.get(p.name))|set([y[1] for y in data.history.get(p.name)])
             with self.subTest(p=p):
                 self.assertEqual(p.restricted_set, r_set)
 
 
     def test_participant_length(self):
-        self.assertEqual(len(self.polyanna.participants), len(data.data.keys()))
+        """Assert that participants equals the length of the input participants"""
+        self.assertEqual(len(self.polyanna.participants), len(data.participants.keys()))
+
+
+    def test_avg_failcount(self):
+        """Find the failure rate of the selection algorithm."""
+        total_fails = 0
+        for drawing in range(1000):
+            total_fails += polynanna.main().failcount
+        print('Average Failcount: {}'.format(total_fails / 1000))
+
+
 
     @unittest.skip('Skip Restricted Set Printing')
     def test_print_all_restricted_set(self):
+        """Print restricted sets for each participant"""
         for p in self.polyanna.participants:
             print(p.name, 'restricted_set:', p.restricted_set)
 
     @unittest.skip('Skip Results Printing')
     def test_print_results(self):
-        """Print results to the console."""
+        """Print drawing results to the console."""
         for participant in self.polyanna.participants:
             print('{:<9} -->  {}'.format(participant.name, participant.giving_to))
 
@@ -52,7 +63,9 @@ class TestPolynanna(unittest.TestCase):
 class TestDatabase(unittest.TestCase):
 
     def setUp(self):
+        """Note this runs a drawing automatically."""
         self.polyanna = polynanna.main()
+        run_drawing()
         db = Database()
         db.bind(provider='sqlite', filename='participants.db')
         db.generate_mapping(create_tables=True)
@@ -63,10 +76,12 @@ class TestDatabase(unittest.TestCase):
 
     @db_session
     def test_print_database(self):
-        self.assertEqual(len(self.polyanna.participants), len(Person.select()))
+        """Verify the database has only as many entries as the polyanna. Print the drawing results."""
+        self.assertEqual(len(self.polyanna.participants), len(Participant.select()),
+                         msg='Number of Participants is not equal to the number of Database Entries')
         print('participants.db Results')
         print('{:<9} |||  {} \n'.format('Name', 'Giving To'))
-        for p in Person.select():
+        for p in Participant.select():
             print('{:<9} -->  {} \n'.format(p.name, p.giving_to), end='')
         
 
