@@ -1,34 +1,46 @@
-<!doctype html>
-{% extends 'bootstrap/base.html' %}
-
-{% block content %}
-<link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
-<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
-<link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
-<title>Polynanna WebApp</title>
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+  {% block head %}
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+  <link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+  <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+  <title>{% block title %}{% endblock %}- Polynanna WebApp</title>
+  {% endblock %}
+</head>
 
   <nav class="navbar navbar-default navbar-static-top">
-    <div class="container">
+    <div class="container-fluid">
       <div class="navbar-header">
-        <img src={{ url_for('static', filename='tree.png' )}}>
-        <img src={{ url_for('static', filename='py.png' )}}>
-        <a href={{ url_for('index') }}><h1>PolyNanna</h1></a>
-        <img src={{ url_for('static', filename='tophat.png' )}}>
-        <img src={{ url_for('static', filename='gift.png' )}}>
+        <img src={{ url_for('static', filename='tree.png' )}} class='img-fluid'>
+        <img src={{ url_for('static', filename='py.png' )}} class='img-fluid'>
+        <a href={{ url_for('index') }}><h1 class='display-4'>PolyNanna</h1></a>
+        <img src={{ url_for('static', filename='tophat.png' )}} class='img-fluid'>
+        <img src={{ url_for('static', filename='gift.png' )}} class='img-fluid'>
       </div>
     </div>
   </nav>
 
-{% block mycontent %}{% endblock mycontent %}
+  <div id="content">{% block content %}{% endblock %}</div>
+
 
 <footer class="footer">
+  {% block footer %}
   <div class="container">
-    <img src={{ url_for('static', filename='tree.png' )}}>
-    <img src={{ url_for('static', filename='py.png' )}}>
-    <img src={{ url_for('static', filename='tophat.png' )}}>
-    <img src={{ url_for('static', filename='gift.png' )}}>
-    <img src={{ url_for('static', filename='tree.png' )}}>
-    <img src={{ url_for('static', filename='py.png' )}}>
+    <img src={{ url_for('static', filename='tree.png' )}} class='img-fluid'>
+    <img src={{ url_for('static', filename='py.png' )}} class='img-fluid'>
+    <img src={{ url_for('static', filename='tophat.png' )}} class='img-fluid'>
+    <img src={{ url_for('static', filename='gift.png' )}} class='img-fluid'>
+    <img src={{ url_for('static', filename='tree.png' )}} class='img-fluid'>
+    <img src={{ url_for('static', filename='py.png' )}} class='img-fluid'>
   </div>
+  <div class='container'>&copy; Copyright 2017 <a href="https://github.com/joemarchese">Joseph Marchese</a>.</div>
+  {% endblock %}
 </footer>
-{% endblock content %}
+
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+  </body>
+</html>

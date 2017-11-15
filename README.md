@@ -41,7 +41,6 @@ To use the Web App:
 ```
 python app.py
 ```
-Navigate to http://localhost:5000/ on your favorite web browser.
 
 To use the GUI:
 ```

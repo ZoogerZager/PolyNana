@@ -1,14 +1,13 @@
 from flask import Flask, render_template, redirect, url_for
-from flask_bootstrap import Bootstrap
 from models import db, Participant
 import run_drawing
+import webbrowser
 
 
 run_drawing.main()
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///participants.db'
 db.init_app(app)
-Bootstrap(app)
 
 @app.route('/')
 def index():
@@ -31,4 +30,6 @@ def results():
     return render_template('results.html', participants=participants)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    webbrowser.open("http://localhost:5000/")
+    app.run()
+
