@@ -23,6 +23,10 @@ def run_drawing():
 			person = Participant(name=p.name, giving_to=p.giving_to)
 
 
-if __name__ == '__main__':
+def main():
 	run_drawing()
 	print('Drawing Complete.')
+
+if __name__ == '__main__':
+	main()
+	

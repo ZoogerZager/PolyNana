@@ -1,8 +1,10 @@
 from flask import Flask, render_template, redirect, url_for
 from flask_bootstrap import Bootstrap
 from models import db, Participant
+import run_drawing
 
 
+run_drawing.main()
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///participants.db'
 db.init_app(app)
