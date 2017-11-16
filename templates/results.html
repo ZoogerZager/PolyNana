@@ -1,12 +1,11 @@
 {% extends "layout.html" %}
 {% block content %}
-  <div class="alert alert-info" role="alert">Full Results</div>
-	<div class="well">
-		<ul class="list-group">
-			{% for p in participants %}
-			  <li class="list-group-item">{{ p.name }} -->  {{ p.giving_to }}</li>
-			{% endfor %}
-		</ul>
-	</div>
+<div class="alert alert-info" role="alert">
+  <h4 class='alert-heading'>Full Results</h4>
 </div>
+<ul class="list-group">
+	{% for p in participants %}
+	  <li class="list-group-item">{{ p.name }} -->  {{ p.giving_to }}</li>
+	{% endfor %}
+</ul>
 {% endblock content %}

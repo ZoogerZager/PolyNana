@@ -1,4 +1,8 @@
 {% extends "layout.html" %}
 {% block content %}
-  <div class="alert alert-danger" role="alert">Hello {{ name }}! You are giving a gift to <strong>{{ giving_to }}</strong>.</div>
+  <div class="alert alert-danger" role="alert">
+  	<h4 class='alert-heading'>Hello {{ name }}!</h4>
+  	You are giving a gift to
+  	<h3 class='alert-heading'>{{ giving_to }}</h3>
+  </div>
 {% endblock content %}

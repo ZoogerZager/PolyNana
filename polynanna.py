@@ -6,13 +6,12 @@ class Polyanna:
     """This class contains stats, the drawing logic, and all data."""
 
     def __init__(self, participants=None):
-        self.participants = []
         self.participants = [Participant(p) for p in data.participants.keys()]
         shuffle(self.participants)
         self.failcount = 0
 
 
-    def run_drawing_until_completed(self):
+    def run_drawing_until_completed(self, completed=False):
         """Build a Hat and make selections until a valid result is achieved.
 
         The try/except block works by iterating over hat contents and making
@@ -20,7 +19,6 @@ class Polyanna:
         participant), it will raise an IndexError add to the failcount, and
         restart the while loop.
         """
-        completed = False
         while not completed:
             hat = Hat(self.participants)
             try:
@@ -29,7 +27,6 @@ class Polyanna:
                     hat.contents.remove(participant.giving_to)
                 completed = True
             except IndexError:
-                completed = False
                 self.failcount += 1
         return completed
 
