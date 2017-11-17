@@ -1,9 +1,8 @@
-from flask_sqlalchemy import SQLAlchemy
+from pony.orm import *
 
-db = SQLAlchemy()
+db = Database()
 
 
-class Participant(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(64), nullable=False)
-    giving_to = db.Column(db.String(128), nullable=False)
+class Participant(db.Entity):
+    name = Required(str)
+    giving_to = Required(str)

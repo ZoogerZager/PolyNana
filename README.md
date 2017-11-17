@@ -46,10 +46,7 @@ To use the GUI:
 ```
 python gui.py
 ```
-For Command Line Only:
-```
-python polynanna.py
-```
+
 To run Unittests:
 ```
 python -m unittest test
