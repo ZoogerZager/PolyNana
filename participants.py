@@ -47,3 +47,21 @@ history = {'Joe': [(2015, 'Renee'), (2016, 'George')],
            'Nanna': [(2015, 'Dave')],
            'Adrienne': [(2016, 'Jeff')],
 }
+
+
+class Participant:
+    """The class for individual participants that contains their attributes."""
+
+    def __init__(self, name, restricted_set=None, giving_to=None):
+        self.name = name
+        self.restricted_set = restricted_set
+        self.restricted_set = set(participants.get(self.name))|set([y[1] for y in history.get(self.name)])
+        self.giving_to = giving_to
+
+
+def main():
+    return [Participant(p) for p in participants.keys()]
+
+
+if __name__ == '__main__':  
+    main()

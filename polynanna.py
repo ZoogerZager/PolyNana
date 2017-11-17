@@ -1,17 +1,17 @@
-import data
 from random import choice, shuffle
+import participants
 
 
-class Polyanna:
+class PolyNanna:
     """This class contains stats, the drawing logic, and all data."""
 
-    def __init__(self, participants=None):
-        self.participants = [Participant(p) for p in data.participants.keys()]
-        shuffle(self.participants)
+    def __init__(self, _participants=None):
+        self._participants = participants.main()
+        shuffle(self._participants)
         self.failcount = 0
 
 
-    def run_drawing_until_completed(self, completed=False):
+    def run_drawing(self, completed=False):
         """Build a Hat and make selections until a valid result is achieved.
 
         The try/except block works by iterating over hat contents and making
@@ -20,26 +20,15 @@ class Polyanna:
         restart the while loop.
         """
         while not completed:
-            hat = Hat(self.participants)
+            hat = Hat(self._participants)
             try:
-                for participant in self.participants:
+                for participant in self._participants:
                     participant.giving_to = hat.select(participant)
                     hat.contents.remove(participant.giving_to)
                 completed = True
             except IndexError:
                 self.failcount += 1
         return completed
-
-
-class Participant:
-    """The class for individual participants that contains their attributes."""
-
-    def __init__(self, name, restricted_set=None, giving_to=None):
-        self.name = name
-        self.restricted_set = restricted_set
-        self.restricted_set = set(data.participants.get(self.name))|set([y[1] for y in data.history.get(self.name)])
-        self.giving_to = giving_to
-
 
 class Hat:
     """This class represents the valid participants still in the drawing."""
@@ -55,9 +44,9 @@ class Hat:
 
 
 def main():
-    polyanna = Polyanna()
-    polyanna.run_drawing_until_completed()
-    polyanna.participants = sorted(polyanna.participants, key=lambda p: p.name)
+    polyanna = PolyNanna()
+    polyanna.run_drawing()
+    polyanna._participants = sorted(polyanna._participants, key=lambda p: p.name)
     return polyanna
 
 

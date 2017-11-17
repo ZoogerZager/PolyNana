@@ -17,12 +17,12 @@ Python 3.x
 virtualenv (`pip install virtualenv`)
 
 ## How to Set Participants
-Participants are set in the data.py file.
+Participants are set in the participants.py file.
 
-data is a dictionary where a key is the name of the participant and the value is a list of all the invalid selections for that participant.
+participants.py is a dictionary where a key is the name of the participant and the value is a list of all the invalid selections for that participant.
 
 ```
-data = {'Bob': ['Sue', 'Jim'],
+participants = {'Bob': ['Sue', 'Jim'],
         'Jim': ['Bob', 'Betty'],
 }       # And so on.
 ```

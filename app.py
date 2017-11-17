@@ -1,10 +1,10 @@
 from flask import Flask, render_template, redirect, url_for
 from models import db, Participant
-import run_drawing
+import seed_db
 import webbrowser
 
 
-run_drawing.main()
+seed_db.main()
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///participants.db'
 db.init_app(app)
