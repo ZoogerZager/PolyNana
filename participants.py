@@ -2,10 +2,10 @@
 How to Use this File.
 
 participants is a dictionary where a key is the name of the participant and the value is
-a list of all the invalid selections for that participant.
+a set of all the invalid selections for that participant.
 
-participants = {'Bob': ['Sue', 'Jim'],
-        'Jim': ['Bob', 'Betty'],
+participants = {'Bob': {'Sue', 'Jim'},
+        'Jim': {'Bob', 'Betty'},
 }       # And so on.
 
 history is a dictionary where a key is the name of the participant and the value
@@ -18,19 +18,19 @@ history = {'Bob': [(2010, 'Betty'), (2011, 'Freddie')],
 }
 """
 
-participants = {'Joe': ['Joe', 'Jeff', 'Dave', 'Adam', 'Adrienne'],
-        'Dave': ['Dave', 'Jeff', 'Joe', 'Adam'],
-        'Adam': ['Adam', 'Jeff', 'Joe', 'Dave'],
-        'Justin': ['Justin', 'Angela', 'Stefan'],
-        'Stefan': ['Stefan', 'Angela', 'Justin', 'Amanda'],
-        'Amanda': ['Amanda', 'Stefan'],
-        'Francesca': ['Francesca', 'Renee', 'George'],
-        'Jeff': ['Jeff', 'Renee', 'Angela', 'Nanna', 'Joe', 'Adam', 'Dave'],
-        'Angela': ['Angela', 'Renee', 'Jeff', 'Nanna', 'Stefan', 'Justin'],
-        'Renee': ['Renee', 'Jeff', 'Angela', 'Nanna', 'Francesca', 'George'],
-        'George': ['George', 'Renee', 'Francesca'],
-#       'Nanna': ['Nanna', 'Jeff', 'Angela', 'Renee'], Nanna is not participating.
-        'Adrienne': ['Adrienne', 'Joe'],
+participants = {'Joe': {'Joe', 'Jeff', 'Dave', 'Adam', 'Adrienne'},
+        'Dave': {'Dave', 'Jeff', 'Joe', 'Adam'},
+        'Adam': {'Adam', 'Jeff', 'Joe', 'Dave'},
+        'Justin': {'Justin', 'Angela', 'Stefan'},
+        'Stefan': {'Stefan', 'Angela', 'Justin', 'Amanda'},
+        'Amanda': {'Amanda', 'Stefan'},
+        'Francesca': {'Francesca', 'Renee', 'George'},
+        'Jeff': {'Jeff', 'Renee', 'Angela', 'Nanna', 'Joe', 'Adam', 'Dave'},
+        'Angela': {'Angela', 'Renee', 'Jeff', 'Nanna', 'Stefan', 'Justin'},
+        'Renee': {'Renee', 'Jeff', 'Angela', 'Nanna', 'Francesca', 'George'},
+        'George': {'George', 'Renee', 'Francesca'},
+#       'Nanna': {'Nanna', 'Jeff', 'Angela', 'Renee'}, Nanna is not participating.
+        'Adrienne': {'Adrienne', 'Joe'},
 }
 
 history = {'Joe': [(2015, 'Renee'), (2016, 'George')],
@@ -55,12 +55,13 @@ class Participant:
     def __init__(self, name, restricted_set=None, giving_to=None):
         self.name = name
         self.restricted_set = restricted_set
-        self.restricted_set = set(participants.get(self.name))|set([y[1] for y in history.get(self.name)])
+        self.restricted_set = participants.get(self.name)|set([y[1] for y in history.get(self.name)])
         self.giving_to = giving_to
 
 
 def main():
-    return [Participant(p) for p in participants.keys()]
+    return sorted([Participant(p) for p in participants.keys()],
+                   key=lambda p: len(p.restricted_set), reverse=True)
 
 
 if __name__ == '__main__':  

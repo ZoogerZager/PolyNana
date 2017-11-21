@@ -5,10 +5,9 @@ import participants
 class PolyNanna:
     """This class contains stats, the drawing logic, and all data."""
 
-    def __init__(self, hat=None, _participants=None):
-        self.hat = hat
+    def __init__(self, _participants=None, hat=None,):
         self._participants = participants.main()
-        shuffle(self._participants)
+        self.hat = hat
         self.failcount = 0
 
 
@@ -21,11 +20,11 @@ class PolyNanna:
         restart the while loop.
         """
         while not completed:
-            self.hat = set([participant.name for participant in self._participants])
+            self.hat = set([p.name for p in self._participants])
             try:
-                for participant in self._participants:
-                    participant.giving_to = choice(list(self.hat - participant.restricted_set))
-                    self.hat.remove(participant.giving_to)
+                for p in self._participants:
+                    p.giving_to = choice(list(self.hat - p.restricted_set))
+                    self.hat.remove(p.giving_to)
                 completed = True
             except IndexError:
                 self.failcount += 1

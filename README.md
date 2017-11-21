@@ -7,7 +7,7 @@ A program designed to randomize a pollyanna gift exchange with familial restrict
 git clone https://github.com/joemarchese/polynanna
 cd polynanna
 virtualenv venv
-. venv/Scripts/activate # activate virtualenv
+. venv/Scripts/activate      # activate virtualenv
 pip install -r requirements.txt
 ```
 
@@ -19,15 +19,15 @@ virtualenv (`pip install virtualenv`)
 ## How to Set Participants
 Participants are set in the participants.py file.
 
-participants.py is a dictionary where a key is the name of the participant and the value is a list of all the invalid selections for that participant.
+participants is a dictionary where a key is the name of the participant and the value is a set of all the invalid selections for that participant.
 
 ```
-participants = {'Bob': ['Sue', 'Jim'],
-        'Jim': ['Bob', 'Betty'],
+participants = {'Bob': {'Sue', 'Jim'},
+        'Jim': {'Bob', 'Betty'},
 }       # And so on.
 ```
 
-history is a dictionary where a key is the name of the participant and the value is  a list of tuples that contain a year and that participant's recipient for that year.
+history is a dictionary where a key is the name of the participant and the value is a list of tuples that contain a year and that participant's recipient for that year.
 
 ```
 history = {'Bob': [(2010, 'Betty'), (2011, 'Freddie')],
