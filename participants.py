@@ -20,9 +20,9 @@ history = {'Bob': [(2010, 'Betty'), (2011, 'Freddie')],
 
 participants = {'Adam': {'Adam', 'Jeff', 'Joe', 'David'},
                 'Adrienne': {'Adrienne', 'Joe'},
-                'Amanda': {'Amanda', 'Stefan'},
-                'Angela': {'Angela', 'Renee', 'Jeff', 'Nanna', 'Stefan', 'Justin'},
-                'David': {'David', 'Jeff', 'Joe', 'Adam', 'Shaina'},
+                'Amanda': {'Amanda', 'Stefan' ,'Angela'},
+                'Angela': {'Angela', 'Renee', 'Jeff', 'Nanna', 'Stefan', 'Justin', 'Amanda'},
+                # 'David': {'David', 'Jeff', 'Joe', 'Adam', 'Shaina'},
                 'Francesca': {'Francesca', 'Renee', 'George'},
                 'George': {'George', 'Renee', 'Francesca'},
                 'Jeff': {'Jeff', 'Renee', 'Angela', 'Nanna', 'Joe', 'Adam', 'David'},
@@ -30,7 +30,7 @@ participants = {'Adam': {'Adam', 'Jeff', 'Joe', 'David'},
                 'Justin': {'Justin', 'Angela', 'Stefan'},
                 # 'Nanna': {'Nanna', 'Jeff', 'Angela', 'Renee'}, Nanna is not participating.
                 'Renee': {'Renee', 'Jeff', 'Angela', 'Nanna', 'Francesca', 'George'},
-                'Shaina': {'Shaina', 'David'},
+                # 'Shaina': {'Shaina', 'David'},
                 'Stefan': {'Stefan', 'Angela', 'Justin', 'Amanda'},
 }
 
