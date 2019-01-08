@@ -28,13 +28,13 @@ participants = {'Adam': {'Adam', 'Jeff', 'Joe', 'David'},
                 # 'Shaina': {'Shaina', 'David'},
 }
 
-history = {'Adam': [],
-           'Adrienne': [],
+history = {'Adam': [(2018, 'Phil')],
+           'Adrienne': [(2018, 'Micki')],
            # 'David': [],
-           'Micki': [],
-           'Kara': [],
-           'Phil': [],
-           'Joe': [],
+           'Micki': [(2018, 'Adrienne')],
+           'Kara': [(2018, 'Joe')],
+           'Phil': [(2018, 'Adam')],
+           'Joe': [(2018, 'Kara')],
            # 'Shaina': [],  
 }
 
