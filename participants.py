@@ -22,15 +22,15 @@ participants = {'Adam': {'Adam', 'Jeff', 'Joe', 'David'},
                 'Adrienne': {'Adrienne', 'Joe'},
                 'Amanda': {'Amanda', 'Stefan' ,'Angela'},
                 'Angela': {'Angela', 'Renee', 'Jeff', 'Nanna', 'Stefan', 'Justin', 'Amanda'},
-                # 'David': {'David', 'Jeff', 'Joe', 'Adam', 'Shaina'},
+                'David': {'David', 'Jeff', 'Joe', 'Adam', 'Shaina'},
                 'Francesca': {'Francesca', 'Renee', 'George'},
                 'George': {'George', 'Renee', 'Francesca'},
                 'Jeff': {'Jeff', 'Renee', 'Angela', 'Nanna', 'Joe', 'Adam', 'David'},
                 'Joe': {'Joe', 'Jeff', 'David', 'Adam', 'Adrienne'},
                 'Justin': {'Justin', 'Angela', 'Stefan'},
-                # 'Nanna': {'Nanna', 'Jeff', 'Angela', 'Renee'}, Nanna is not participating.
+                'Nanna': {'Nanna', 'Jeff', 'Angela', 'Renee'},
                 'Renee': {'Renee', 'Jeff', 'Angela', 'Nanna', 'Francesca', 'George'},
-                # 'Shaina': {'Shaina', 'David'},
+                'Shaina': {'Shaina', 'David'},
                 'Stefan': {'Stefan', 'Angela', 'Justin', 'Amanda'},
 }
 
