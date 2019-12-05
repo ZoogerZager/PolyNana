@@ -18,24 +18,24 @@ history = {'Bob': [(2010, 'Betty'), (2011, 'Freddie')],
 }
 """
 
-participants = {'Adam': {'Adam', 'Jeff', 'Joe', 'David'},
+participants = {'Adam': {'Adam', 'Joe', 'David'},
                 'Adrienne': {'Adrienne', 'Joe'},
-                # 'David': {'David', 'Joe', 'Adam', 'Shaina'},
+                'David': {'David', 'Joe', 'Adam', 'Shaina'},
                 'Phil': {'Phil', 'Kara'},
                 'Kara': {'Micki', 'Kara'},
                 'Joe': {'Joe', 'David', 'Adam', 'Adrienne'},
                 'Micki': {'Micki', 'Kara'},
-                # 'Shaina': {'Shaina', 'David'},
+                'Shaina': {'Shaina', 'David'},
 }
 
 history = {'Adam': [(2018, 'Phil')],
            'Adrienne': [(2018, 'Micki')],
-           # 'David': [],
+           'David': [],
            'Micki': [(2018, 'Adrienne')],
            'Kara': [(2018, 'Joe')],
            'Phil': [(2018, 'Adam')],
            'Joe': [(2018, 'Kara')],
-           # 'Shaina': [],  
+           'Shaina': [],  
 }
 
 
